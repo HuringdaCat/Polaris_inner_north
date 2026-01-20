@@ -1,16 +1,7 @@
 # polaris
 
-A new Flutter project.
+## Inspiration
+Many people feel deeply inspired by stories of bold lives and dream journeys—but struggle to translate that inspiration into action. They wait for confidence, permission, or the “right time,” and slowly lose momentum. **Polaris: Inner North** was inspired by the idea that direction doesn’t come from pushing harder, but from listening inward—and that empowerment comes from taking one honest step at a time. The app is rooted in the feeling of having a private, safe space to reflect, clarify what truly matters, and gently turn insight into movement. Like a guiding star you can return to, Polaris is designed to help people trust themselves and move forward without pressure or overwhelm.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## What it does
+Polaris: Inner North is a lightweight, gamified reflection-and-action app that helps users build momentum through clarity and micro-steps. Each day, users are guided through a short reflection to reconnect with their inner direction, followed by a single, self-chosen “next step” they can realistically take that day. Progress is tracked through small wins rather than streaks or goals, reinforcing agency and confidence. By combining mindset, journaling, and micro-actions in a calm, supportive experience, Polaris helps users move from inspiration to action—one step at a time.

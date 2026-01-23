@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:polaris/widgets/star_glow.dart';
+import 'package:polaris/widgets/arch_container.dart';
+import 'package:polaris/widgets/nav_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+
+  void _onNavigate(BuildContext context, String route) {
+    // TODO: Implement navigation
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Navigating to $route')),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,165 +21,156 @@ class HomeScreen extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
+            stops: [0.0, 0.4, 0.7, 1.0],
             colors: [
-              Color(0xFF0F2027), // Deep Night Blue
-              Color(0xFF203A43),
-              Color(0xFF2C5364),
+              Color(0xFF4A5568),
+              Color(0xFF6B5B95),
+              Color(0xFFB39BC8),
+              Color(0xFFF0E5D8),
             ],
           ),
         ),
         child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Spacer(flex: 1),
-                // Header / Title
-                const Center(
-                  child: Icon(
-                    Icons.star,
-                    size: 48,
-                    color: Color(0xFFFFD700), // Gold star
-                  ),
-                ),
                 const SizedBox(height: 16),
-                Text(
-                  'Polaris',
-                  style: Theme.of(context).textTheme.displayLarge,
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Inner North',
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        color: Colors.white70,
-                        letterSpacing: 2.0,
-                      ),
-                  textAlign: TextAlign.center,
-                ),
-                const Spacer(flex: 2),
-
-                // Main Action Card: Daily Reflection
-                _buildActionCard(
-                  context,
-                  title: 'Daily Reflection',
-                  description: 'Reconnect with your inner direction.',
-                  icon: Icons.edit_note,
-                  onTap: () {
-                    // TODO: Navigate to reflection
-                  },
-                ),
                 
-                const SizedBox(height: 16),
-
-                // Secondary Action: Next Step
-                _buildActionCard(
-                  context,
-                  title: 'Your Next Step',
-                  description: 'One small action for today.',
-                  icon: Icons.arrow_forward,
-                  isPrimary: false,
-                  onTap: () {
-                    // TODO: Navigate to tasks
-                  },
-                ),
-
-                const Spacer(flex: 3),
-                
-                // Quote or Footer
-                Text(
-                  '"Direction comes from listening inward."',
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    fontStyle: FontStyle.italic,
-                    color: Colors.white38,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 16),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildActionCard(
-    BuildContext context, {
-    required String title,
-    required String description,
-    required IconData icon,
-    required VoidCallback onTap,
-    bool isPrimary = true,
-  }) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
-        child: Container(
-          padding: const EdgeInsets.all(24),
-          decoration: BoxDecoration(
-            color: isPrimary
-                ? Colors.white.withOpacity(0.1)
-                : Colors.transparent,
-            border: Border.all(
-              color: Colors.white.withOpacity(0.15),
-              width: 1,
-            ),
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: isPrimary
-                ? [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 10,
-                      offset: const Offset(0, 4),
-                    )
-                  ]
-                : [],
-          ),
-          child: Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.05),
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(
-                  icon,
-                  color: isPrimary ? const Color(0xFFD4AF37) : Colors.white70,
-                  size: 24,
-                ),
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                // Header with time-based greeting
+                Column(
                   children: [
                     Text(
-                      title,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                          ),
+                      'Good Evening',
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.7),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
-                    const SizedBox(height: 4),
-                    Text(
-                      description,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Colors.white60,
-                          ),
+                    const SizedBox(height: 8),
+                    const Text(
+                      'Welcome to Your Inner Nook',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w300,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ],
                 ),
-              ),
-              Icon(
-                Icons.chevron_right,
-                color: Colors.white.withOpacity(0.3),
-              ),
-            ],
+
+                const SizedBox(height: 32),
+
+                // Central Star - Your Inner Guide
+                const Column(
+                  children: [
+                    StarGlow(size: 120),
+                    SizedBox(height: 24),
+                    SizedBox(
+                      width: 250,
+                      child: Text(
+                        'This is your gentle companion, always here to guide you inward',
+                        style: TextStyle(
+                          color: Colors.white70,
+                          fontSize: 14,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 32),
+
+                // Today's Invitation
+                ArchContainer(
+                  children: SizedBox(
+                    width: double.infinity,
+                    child: Column(
+                      children: [
+                        const Icon(
+                          Icons.auto_awesome,
+                          color: Color(0xFFFFF59D), // yellow-200 equivalent
+                          size: 24,
+                        ),
+                        const SizedBox(height: 12),
+                        Text(
+                          "Today's Gentle Invitation",
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(0.9),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          '"What small thing made you smile today?"',
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(0.7),
+                            fontSize: 12,
+                            fontStyle: FontStyle.italic,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 24),
+
+                // Navigation Cards Grid
+                GridView.count(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 12,
+                  crossAxisSpacing: 12,
+                  childAspectRatio: 1.4, // Adjust based on your visual preference
+                  children: [
+                    NavCard(
+                      title: 'Daily Reflection',
+                      icon: Icons.nightlight_round,
+                      iconColor: const Color(0xFFE1BEE7), // purple-200
+                      onTap: () => _onNavigate(context, 'reflection'),
+                    ),
+                    NavCard(
+                      title: 'Micro Action',
+                      icon: Icons.favorite,
+                      iconColor: const Color(0xFFF48FB1), // pink-200
+                      onTap: () => _onNavigate(context, 'action'),
+                    ),
+                    NavCard(
+                      title: 'Companion',
+                      icon: Icons.auto_awesome,
+                      iconColor: const Color(0xFFFFF59D), // yellow-200
+                      onTap: () => _onNavigate(context, 'companion'),
+                    ),
+                    NavCard(
+                      title: 'Your Journey',
+                      icon: Icons.cloud,
+                      iconColor: const Color(0xFF90CAF9), // blue-200
+                      onTap: () => _onNavigate(context, 'progress'),
+                    ),
+                  ],
+                ),
+                
+                const SizedBox(height: 12),
+                
+                // Full width button for Dream Journey
+                NavCard(
+                  title: 'My Dream Journey',
+                  icon: Icons.explore,
+                  iconColor: const Color(0xFFFFE082), // amber-200
+                  onTap: () => _onNavigate(context, 'goal'),
+                ),
+
+                const SizedBox(height: 32),
+              ],
+            ),
           ),
         ),
       ),

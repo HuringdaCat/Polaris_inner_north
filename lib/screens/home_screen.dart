@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:polaris/screens/daily_reflection_screen.dart';
+import 'package:polaris/screens/micro_action_screen.dart';
+import 'package:polaris/screens/progress_screen.dart';
+import 'package:polaris/screens/companion_screen.dart';
+import 'package:polaris/screens/dream_journey_screen.dart';
 import 'package:polaris/widgets/star_glow.dart';
 import 'package:polaris/widgets/arch_container.dart';
 import 'package:polaris/widgets/nav_card.dart';
@@ -7,10 +12,42 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   void _onNavigate(BuildContext context, String route) {
-    // TODO: Implement navigation
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Navigating to $route')),
-    );
+    if (route == 'reflection') {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const DailyReflectionScreen(),
+        ),
+      );
+    } else if (route == 'action') {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const MicroActionScreen(),
+        ),
+      );
+    } else if (route == 'progress') {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const ProgressScreen(),
+        ),
+      );
+    } else if (route == 'companion') {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const CompanionScreen(),
+        ),
+      );
+    } else if (route == 'goal') {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const DreamJourneyScreen(),
+        ),
+      );
+    } else {
+      // TODO: Implement other navigation
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Navigating to $route')),
+      );
+    }
   }
 
   @override

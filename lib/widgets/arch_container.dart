@@ -26,7 +26,6 @@ class ArchContainer extends StatelessWidget {
         padding = const EdgeInsets.all(32);
         break;
       case ArchVariant.defaults:
-      default:
         padding = const EdgeInsets.all(24);
         break;
     }

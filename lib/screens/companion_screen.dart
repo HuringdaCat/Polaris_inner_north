@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:dart_openai/dart_openai.dart';
+import 'package:polaris/services/openai_service.dart';
 import 'package:polaris/widgets/arch_container.dart';
 import 'package:polaris/widgets/star_glow.dart';
+
 
 class CompanionScreen extends StatefulWidget {
   const CompanionScreen({super.key});
@@ -11,6 +14,9 @@ class CompanionScreen extends StatefulWidget {
 
 class _CompanionScreenState extends State<CompanionScreen> {
   final TextEditingController _controller = TextEditingController();
+  final OpenAIService _openAIService = OpenAIService();
+  bool _isLoading = false;
+
   final List<_Message> _messages = [
     _Message(
       text: "Hello, traveler. I am your inner companion. What is on your mind today?",
@@ -18,25 +24,35 @@ class _CompanionScreenState extends State<CompanionScreen> {
     ),
   ];
 
-  void _handleSubmitted(String text) {
+  Future<void> _handleSubmitted(String text) async {
     if (text.isEmpty) return;
 
     _controller.clear();
     setState(() {
       _messages.add(_Message(text: text, isUser: true));
+      _isLoading = true;
     });
 
-    // Simulate response delay
-    Future.delayed(const Duration(seconds: 1), () {
-      if (mounted) {
-        setState(() {
-          _messages.add(_Message(
-            text: "I hear you. Tell me more about how that makes you feel.",
-            isUser: false,
-          ));
-        });
-      }
-    });
+    final history = _messages.map((m) => OpenAIChatCompletionChoiceMessageModel(
+          content: [
+            OpenAIChatCompletionChoiceMessageContentItemModel.text(m.text)
+          ],
+          role: m.isUser
+              ? OpenAIChatMessageRole.user
+              : OpenAIChatMessageRole.assistant,
+        )).toList();
+
+    final response = await _openAIService.getChatResponse(history);
+
+    if (mounted) {
+      setState(() {
+        _isLoading = false;
+        _messages.add(_Message(
+          text: response,
+          isUser: false,
+        ));
+      });
+    }
   }
 
   @override
@@ -96,6 +112,22 @@ class _CompanionScreenState extends State<CompanionScreen> {
                   },
                 ),
               ),
+
+              if (_isLoading)
+                const Padding(
+                  padding: EdgeInsets.only(left: 16.0, bottom: 8.0),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Companion is thinking...",
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontStyle: FontStyle.italic,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                ),
 
               // Input Area
               Container(

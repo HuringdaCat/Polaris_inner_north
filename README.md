@@ -264,7 +264,7 @@ For detailed development instructions, see [DEVELOPMENT_GUIDE.md](DEVELOPMENT_GU
 
 Each feature uses a color-coded icon:
 - 🟣 Purple - Daily Reflection
-- 🟣 Pink - Micro Actions  
+- 🩷 Pink - Micro Actions  
 - 🟡 Yellow - AI Companion
 - 🔵 Blue - Progress Tracking
 - 🟠 Amber - Dream Journey
@@ -473,7 +473,6 @@ This project is private and not licensed for public use.
 For questions, feedback, or issues:
 - 🐛 **Report bugs**: [GitHub Issues](https://github.com/HuringdaCat/Polaris_inner_north/issues)
 - 💡 **Feature requests**: [GitHub Discussions](https://github.com/HuringdaCat/Polaris_inner_north/discussions)
-- 📧 **Email**: [Your contact email]
 
 ---
 

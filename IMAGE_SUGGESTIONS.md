@@ -384,7 +384,6 @@ If you want to improve the README immediately while preparing proper screenshots
 
 ## 🔗 Additional Resources
 
-- **Figma Project**: https://www.figma.com/design/WHLmfLCbJj3COqNDnL89XX/Polaris-Inner-North-App-UI
 - **Asset Location**: `assets/images/elf_companion.svg` (existing)
 - **App Icon**: Check `ios/Runner/Assets.xcassets/AppIcon.appiconset/` for logo variants
 
